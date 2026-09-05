@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gamel.com - Potencia Tu Empresa</title>
+  <style>
+    :root {
+      --primary: #0066cc;
+      --primary-hover: #0052a3;
+      --bg-dark: #0f172a;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navegación */
+    navbar {
+      background-color: var(--bg-dark);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: white;
+    }
+
+    .user-avatar {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0f172a;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Formularios y Botones */
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Listados e Interfaz */
+    .item-list {
+      margin-top: 15px;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      background: #f8fafc;
+    }
+
+    .btn-sm {
+      width: auto;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      background: #16a34a;
+    }
+
+    .btn-sm:hover {
+      background: #15803d;
+    }
+
+    /* Footer */
+    footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 40px;
+    }
+
+    footer nav a {
+      color: var(--text-muted);
+      text-transform: none;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <navbar>
+    <div class="brand">
+      <svg class="brand-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C 25 10, 10 30, 10 50 C 10 75, 30 90, 50 90 C 70 90, 85 75, 85 60 L 50 60 L 50 45 L 95 45 C 98 60, 90 98, 50 98 C 20 98, 0 75, 0 50 C 0 20, 25 0, 50 0 Z" fill="#38bdf8"/>
+        <path d="M40 30 L60 10 L80 30 M60 10 L60 50" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">GAMEL</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Inicio</a></li>
+        <li><a href="#">Empresas</a></li>
+        <li><a href="#">Creador de Webs</a></li>
+        <li><a href="#">Planes</a></li>
+        <li><div class="user-avatar">U</div></li>
+      </ul>
+    </nav>
+  </navbar>
+
+  <section class="hero">
+    <h1>Impulsa y Construye tu Visión</h1>
+    <p>Gestiona, Mejora Tus Empresas y Crea Sitios Web de Alta Calidad con una Plataforma Todo-en-Uno.</p>
+  </section>
+
+  <main class="dashboard">
+
+    <div class="card">
+      <div class="card-title">🚀 Crea Tu Empresa</div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Inicia y gestiona tu negocio registrando una nueva entidad.</p>
+      <input type="text" id="companyName" placeholder="Nombre de la empresa...">
+      <button class="btn" onclick="addCompany()">Comenzar</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎨 Crea Tu Web</div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Diseña y construye tu presencia online rápidamente.</p>
+      <input type="text" id="siteTitle" placeholder="Título del sitio web...">
+      <input type="text" id="siteDomain" placeholder="subdominio.gamel.com">
+      <button class="btn" onclick="addWeb()">Diseñar Ahora</button>
+    </div>
+
+    <div class="card card-full">
+      <div class="card-title">📈 Mejora Tus Empresas y Sitios</div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 10px;">Empresas Activas</h3>
+          <div id="companyContainer" class="item-list">
+            <p style="color: var(--text-muted); font-size: 0.85rem;">No hay empresas creadas aún.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 10px;">Páginas Web Publicadas</h3>
+          <div id="webContainer" class="item-list">
+            <p style="color: var(--text-muted); font-size: 0.85rem;">No hay páginas publicadas aún.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <a href="#">Sobre Nosotros</a> &nbsp;|&nbsp;
+      <a href="#">Ayuda</a> &nbsp;|&nbsp;
+      <a href="#">Legal</a>
+    </div>
+    <div>© 2026 gamel.com</div>
+  </footer>
+
+  <script>
+    const state = {
+      companies: [],
+      webs: []
+    };
+
+    function addCompany() {
+      const input = document.getElementById('companyName');
+      if (!input.value.trim()) return;
+
+      state.companies.push({
+        id: Date.now(),
+        name: input.value,
+        level: 1
+      });
+
+      input.value = '';
+      render();
+    }
+
+    function addWeb() {
+      const titleInput = document.getElementById('siteTitle');
+      const domainInput = document.getElementById('siteDomain');
+
+      if (!titleInput.value.trim()) return;
+
+      state.webs.push({
+        id: Date.now(),
+        title: titleInput.value,
+        domain: domainInput.value || 'sitio.gamel.com'
+      });
+
+      titleInput.value = '';
+      domainInput.value = '';
+      render();
+    }
+
+    function upgradeCompany(id) {
+      const company = state.companies.find(c => c.id === id);
+      if (company) {
+        company.level++;
+        render();
+      }
+    }
+
+    function render() {
+      // Render Empresas
+      const compContainer = document.getElementById('companyContainer');
+      if (state.companies.length === 0) {
+        compContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No hay empresas creadas aún.</p>';
+      } else {
+        compContainer.innerHTML = state.companies.map(c => `
+          <div class="item-row">
+            <div>
+              <strong>${c.name}</strong><br>
+              <small style="color: var(--text-muted)">Nivel: ${c.level}</small>
+            </div>
+            <button class="btn btn-sm" onclick="upgradeCompany(${c.id})">Optimizar (+1)</button>
+          </div>
+        `).join('');
+      }
+
+      // Render Webs
+      const webContainer = document.getElementById('webContainer');
+      if (state.webs.length === 0) {
+        webContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No hay páginas publicadas aún.</p>';
+      } else {
+        webContainer.innerHTML = state.webs.map(w => `
+          <div class="item-row">
+            <div>
+              <strong>${w.title}</strong><br>
+              <small style="color: var(--primary)">${w.domain}</small>
+            </div>
+            <span style="font-size: 0.75rem; background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 12px; font-weight: bold;">Activa</span>
+          </div>
+        `).join('');
+      }
+    }
+  </script>
+
+</body>
+</html>
